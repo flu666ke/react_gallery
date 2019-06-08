@@ -1,18 +1,18 @@
 import React from 'react';
 import './style.scss';
-import List from '../List';
 
-function App() {
+
+function Gallery() {
 
   
 
   return (
-    <div className="App">
-      <h1>Hello</h1>
-      <List />
+    <div className="gallery">
+      <h1>Gallery</h1>
+ 
     </div>
   );
 }
 
-export default App;
+export default Gallery;
 
