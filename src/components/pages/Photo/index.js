@@ -1,18 +1,33 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { getPhoto } from '../../../utils/PhotoApiService';
+import { connect } from 'react-redux';
 import './style.scss';
-import List from '../List';
 
-function App() {
-
+function Photo(props) {
+  const {match:{params:{photoId}}, setPhoto} = props;
   
 
-  return (
-    <div className="App">
-      <h1>Hello</h1>
-      <List />
-    </div>
-  );
+  useEffect(() => {
+    getPhoto(photoId).then(photo => {
+      setPhoto(photo);
+    })
+  }, [photoId, setPhoto]);
+
+  return <h1>Photo page</h1>
 }
 
-export default App;
+
+
+
+const mapStateToProps = state => ({
+  photo: state.photo.data
+});
+
+const mapDispatchToProps = dispatch => ({
+  setPhoto: photo => dispatch({type: 'SET_PHOTO', photo})
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Photo);
+
+
 
