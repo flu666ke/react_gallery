@@ -7,10 +7,10 @@ function Footer() {
   
 
   return (
-    <div className="footer">
-      <h1>Hello footer</h1>
+    <footer className="footer">
+      <a href="#">Web developer</a>
      
-    </div>
+    </footer>
   );
 }
 

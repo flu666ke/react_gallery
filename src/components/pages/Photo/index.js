@@ -6,6 +6,8 @@ import './style.scss';
 function Photo(props) {
   const {match:{params:{photoId}}, setPhoto} = props;
   
+ 
+  
 
   useEffect(() => {
     getPhoto(photoId).then(photo => {
@@ -13,9 +15,25 @@ function Photo(props) {
     })
   }, [photoId, setPhoto]);
 
-  return <h1>Photo page</h1>
+  const {urls, updated_at, alt_description} = props.photo;
+
+const renderDate = () => {
+  const date = new Date(updated_at);
+  return date.toLocaleDateString('ru-RU');
 }
 
+return (
+  <div className="main-photo">
+  <div className="photo-header">
+  <i>{renderDate()}</i>
+  <p>{alt_description}</p>
+  </div>
+  {urls && <img src={urls.regular} alt={alt_description} />}
+  
+  
+  </div>
+  );
+}
 
 
 

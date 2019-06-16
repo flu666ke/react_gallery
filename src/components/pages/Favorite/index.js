@@ -1,18 +1,32 @@
 import React from 'react';
+import List from './views/List';
+import { connect } from 'react-redux';
+
 import './style.scss';
 
 
-function Favorite() {
+function Favorite(props) {
+
+  const { removeFavorite, photos } = props;
 
   
-
   return (
-    <div className="favorite">
-      <h1>Hello</h1>
-     
+    <div className="favorite-list">
+      <List photos={photos} removeFavorite={removeFavorite}/>
     </div>
   );
 }
 
-export default Favorite;
+
+const mapStateToProps = state => ({
+  photos: state.favorite.photos
+});
+
+const mapDispatchToProps = dispatch => ({
+  removeFavorite: id => dispatch({type: 'REMOVE_FAVORITE', id})
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Favorite);
+
+
 
